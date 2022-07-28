@@ -265,10 +265,10 @@ For example:
 ```
 
 
-### CameraStatus REST API Endpoint
+### CameraStatus Command
 Use the following query to determine the status of the camera.
 
-Query parameter:
+URL parameter:
 - **DeviceName**: The name of the camera
 - **InputIndex**: indicates the current index of the video input (if a camera only has one source for video, the index needs to be set to '0')
 
