@@ -50,7 +50,7 @@ The following devices have been tested with EdgeX:
 - Logitech StreamCam
 
 ## Dependencies
-The software has dependencies, including Git, Docker, Docker Compose, and assorted tools (e.g., curl). Follow the instructions below to install any dependency that is not already installed.  
+The software has dependencies, including Git, Docker, Docker Compose, and assorted command line tools. Follow the instructions below to install any dependency that is not already installed.  
 
 ### Install Git
 Install Git from the official repository as documented on the [Git SCM](https://git-scm.com/download/linux) site.
@@ -139,11 +139,11 @@ Install the build, media streaming, and parsing tools:
    sudo apt install build-essential vlc ffmpeg jq curl
    ```
 
-   - The device service ONLY works on Linux with kernel v5.10 or higher.
-NOTE: An additional package may be required to build the device-use-camera service
+NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
+NOTE: An additional package may be required to build the device-use-camera service.  
 ```
- sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
- ```
+sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
+```
 
 ### Tool Descriptions
 The table below lists command line tools this guide uses to help with EdgeX configuration and device setup.
@@ -152,7 +152,6 @@ The table below lists command line tools this guide uses to help with EdgeX conf
 | ----------- | ----------- |----------- |
 | **curl**     | Allows the user to connect to services such as EdgeX. |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
 | **jq**   |Parses the JSON object returned from the `curl` requests. |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
-| **base64**   | Converts data into the Base64 format.| |
 
 >Table 1: Command Line Tools
 
@@ -171,7 +170,7 @@ make docker
 
 ## Configuration options
 ### Configurable RTSP server hostname and port
-The hostname and port of the RTSP server to which the device service publishes video streams can be configured in the [Driver] section of the service configuration located at '/cmd/res/configuration.toml'. The default vaules can be used in this guide.
+The hostname and port of the RTSP server can be configured in the `[Driver]` section of the [configuration.toml](../cmd/res/configuration.toml) The default vaules can be used in this guide.
 
 For example:
 ```yaml
@@ -179,6 +178,11 @@ For example:
   RtspServerHostName = "localhost"
   RtspTcpPort = "8554"
 ```
+<p align="left">
+      <i>Sample: Snippet from configuration.toml</i>
+</p>
+
+
 ### Run the Service
 
 1. Navigate to the `edgex-compose/compose-builder` directory.
@@ -186,7 +190,7 @@ For example:
 2. Run EdgeX with the microservice:
 
    ```bash
-    make run ds-usb-camera no-secty
+    make run no-secty ds-usb-camera 
    ```
 
 ## Verify Service and Device Profiles
@@ -203,7 +207,7 @@ For example:
 
    ```docker
    CONTAINER ID   IMAGE                                         COMMAND                  CREATED       STATUS          PORTS                                                                                         NAMES
-    f0a1c646f324   edgexfoundry/device-usb-camera:0.0.0-dev                        "/docker-entrypoint.…"   26 hours ago   Up 20 hours   127.0.0.1:8554->8554/tcp, 127.0.0.1:59983->59983/tcp                         edgex-device-usb-camera                                                                   edgex-device-onvif-camera
+   f0a1c646f324   edgexfoundry/device-usb-camera:0.0.0-dev                        "/docker-entrypoint.…"   26 hours ago   Up 20 hours   127.0.0.1:8554->8554/tcp, 127.0.0.1:59983->59983/tcp                         edgex-device-usb-camera                                                                   edgex-device-onvif-camera
    ```
 
 2. Check that the device service is added to EdgeX:
@@ -213,18 +217,18 @@ For example:
    ```
    Successful:
    ```json
-  {
-    "apiVersion": "v2",
-    "statusCode": 200,
-    "service": {
-      "created": 1658769423192,
-      "modified": 1658872893286,
-      "id": "04470def-7b5b-4362-9958-bc5ff9f54f1e",
-      "name": "device-usb-camera",
-      "baseAddress": "http://edgex-device-usb-camera:59983",
-      "adminState": "UNLOCKED"
-    }
-  }
+   {
+      "apiVersion": "v2",
+      "statusCode": 200,
+      "service": {
+         "created": 1658769423192,
+         "modified": 1658872893286,
+         "id": "04470def-7b5b-4362-9958-bc5ff9f54f1e",
+         "name": "device-usb-camera",
+         "baseAddress": "http://edgex-device-usb-camera:59983",
+         "adminState": "UNLOCKED"
+      }
+   }
    ```
    Unsuccessful:
    ```json
@@ -237,12 +241,10 @@ For example:
 ## Adding Devices using REST API
 Devices can either be added to the service by defining them in a static configuration file, discovering devices dynamically, or with the REST API. For this example, the device will be added using the REST API.
 
-1. Edit the information to appropriately match the camera. The field `Path` should match that of the camera:
-
-The device's protocol properties contain:
-* **Path** is a file descriptor of camera created by OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
-* **AutoStreaming** indicates whether the device service should automatically start video streaming for cameras. Default value is false.
-
+1. Edit the information to appropriately match the camera. The device's protocol properties contain:  
+   * **Path** is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
+   * **AutoStreaming** indicates whether the device service should automatically start video streaming for cameras. Default value is false.
+   
    ```bash
    curl -X POST -H 'Content-Type: application/json'  \
    http://localhost:59881/api/v2/device \
@@ -261,8 +263,8 @@ The device's protocol properties contain:
                     	"CardName": "NexiGo N930AF FHD Webcam: NexiG",
                     	"Path": "/dev/video6",
  			                "AutoStreaming": "false"
-                }
-            }
+                     }
+                  }
                }
             }
    ]'
@@ -273,7 +275,7 @@ The device's protocol properties contain:
    [{"apiVersion":"v2","statusCode":201,"id":"fb5fb7f2-768b-4298-a916-d4779523c6b5"}]
    ```
 
-### Start Video Streaming
+## Start Video Streaming
 Unless the device service is configured to stream video from the camera automatically, a 'StartStreaming' command must be sent to the device service.
 
 There are two types of options:
@@ -292,7 +294,7 @@ curl -X PUT -d '{
       "InputImageSize": "640x480",
       "OutputVideoQuality": "5"
     }
-}' http://localhost:59882/api/v2/device/name/[DeviceName]/StartStreaming
+}' http://localhost:59882/api/v2/device/name/<device name>/StartStreaming
 ```
 
 Supported Input options:
@@ -316,7 +318,7 @@ Query parameter:
 - **DeviceName**: The name of the camera
 
 ```
-curl -s http://localhost:59882/api/v2/device/name/[DeviceName]/StreamURI | jq -r '"StreamURI: " + '.event.readings[].value''
+curl -s http://localhost:59882/api/v2/device/name/<device name>/StreamURI | jq -r '"StreamURI: " + '.event.readings[].value''
 ```
 
 The response to the above call should look similar to the following:
@@ -356,9 +358,9 @@ To stop all EdgeX services (containers), execute the `make down` command:
 To verify the usb camera is set to stream video, use the command below. 
 
 ```
-curl http://localhost:59882/api/v2/device/name/[DeviceName]/StreamingStatus | jq -r '"StreamingStatus: " + (.event.readings[].objectValue.IsStreaming|tostring)'
+curl http://localhost:59882/api/v2/device/name/<device name>/StreamingStatus | jq -r '"StreamingStatus: " + (.event.readings[].objectValue.IsStreaming|tostring)'
 ```
-- please replace [DeviceName] with the name of the device you want to test
+- please replace <device name> with the name of the device you want to test
 - if the StreamingStatus is false, the camera is not configured to stream video. Please try the Start Video Streaming section again
 
 ## License
