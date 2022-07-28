@@ -268,7 +268,7 @@ For example:
 ### CameraStatus REST API Endpoint
 Use the following query to determine the status of the camera.
 
-Query parameter:
+URL parameter:
 - **DeviceName**: The name of the camera
 
 ```
