@@ -27,8 +27,7 @@ The figure below illustrates the software flow through the architecture componen
 # Getting Started
 
 For general usage, use [this guide.](./docs/general-usage.md)  
-For a full walktrhough on how to use this service and RTSP streaming, follow [this guide.](./docs/general-usage.md)  
-
+For a full walkthrough on how to use this service and RTSP streaming, follow [this guide.](./docs/general-usage.md)  
 
 
 ## License

@@ -1,40 +1,15 @@
-## General Usage
+# General Usage
+
+## Contents
+[Configure and Build the service](#configure-and-build-the-service)  
+[Run device-usb-service](#run-device-usb-camera)  
+[Next Steps](#next-steps)
 
 NOTE: An additional package may be required to build the device-use-camera service
 ```
  sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
  ```
-### Build the executable file
-
-```shell
-make build
-```
-
-### Build docker image
-```shell
-make docker
-```
-
-### Run device-usb-camera
-- Docker
-  - Use [compose-builder](https://github.com/edgexfoundry/edgex-compose/tree/main/compose-builder)
-    - For non secure mode
-    ```
-    make gen ds-usb-camera no-secty
-    ```
-  - For secure mode 
-    ```
-    make gen ds-usb-camera
-    ```
-  - Docker Compose start command
-  
-  ```
-    docker-compose -p edgex up -d
-  ```
-- Native
-  ```
-  cd cmd && EDGEX_SECURITY_SECRET_STORE=false ./device-usb-camera
-  ```
+## Configure and Build the Service
 
 ### Define the device profile
 
@@ -44,7 +19,6 @@ There are two types of `command`:
 
 * The commands started with **METADATA_** prefix are used to get camera metadata.
 
-For example:
 ```yaml
 deviceResources:
   - name: "CameraInfo"
@@ -57,6 +31,9 @@ deviceResources:
       valueType: "Object"
       readWrite: "R"
 ```
+<p align="left">
+      <i>Sample: Snippet from general.usb.camera.yaml</i>
+</p>
 
 * The commands start with **VIDEO_** prefix are related to video stream.
 
@@ -72,9 +49,13 @@ deviceResources:
       readWrite: "R"
 ```
 
-For all supported commands, refer to the sample at [cmd/res/profiles/general.usb.camera.yaml](cmd/res/profiles/general.usb.camera.yaml).
-> *Note: In general, this sample should be applicable to all types of USB cameras.
-> You don't need to define device profile yourself unless you want to modify resource names or set default values for [video options](#video-options).
+<p align="left">
+      <i>Sample: Snippet from general.usb.camera.yaml</i>
+</p>
+
+For all supported commands, refer to the sample at [general.usb.camera.yaml](../cmd/res/profiles/general.usb.camera.yaml).
+> NOTE: In general, this sample should be applicable to all types of USB cameras.
+> NOTE: You don't need to define device profile yourself unless you want to modify resource names or set default values for [video options](./advanced-options.md#video-options).
 
 ### Define the device
 
@@ -94,133 +75,46 @@ For example:
     Path = "/dev/video0"
     AutoStreaming = "false"
 ```
-See the examples at [cmd/res/devices](cmd/res/devices)
+<p align="left">
+      <i>Sample: Snippet from general.usb.camera.toml.example</i>
+</p>
 
-> *Note: When a new device is created in Core Metadata, a callback function of the device service will be called to add the device card name and serial number to protocol properties for identification purposes.
-> These two pieces of information are obtained through `V4L2` API and `udev` utility.
+See the examples at `cmd/res/devices`  
+> NOTE: When a new device is created in Core Metadata, a callback function of the device service will be called to add the device card name and serial number to protocol properties for identification purposes. These two pieces of information are obtained through `V4L2` API and `udev` utility.
 
-## Advanced topics
+### Build the executable file
 
-### Video options
-There are two types of options:
-- The options start with **Input** prefix are used for the camera, such as specifying the image size and pixel format.
-- The options start with **Output** prefix are used for the output video, such as specifying aspect ratio and quality.
-
-These options can be passed in through object value when calling StartStreaming.
-
-For example:
 ```shell
-curl -X PUT -d '{
-    "StartStreaming": {
-      "InputImageSize": "640x480",
-      "OutputVideoQuality": "5"
-    }
-}' http://localhost:59882/api/v2/device/name/hp-w200-01/StartStreaming
+make build
 ```
 
-Supported Input options:
-- **InputFps**: Ignore original timestamps and instead generate timestamps assuming constant frame rate fps. (default - same as source)
-- **InputImageSize**: Specifies the image size of the camera. The format is `wxh`, for example "640x480". (default - automatically selected by FFmpeg)
-- **InputPixelFormat**: Set the preferred pixel format (for raw video). (default - automatically selected by FFmpeg)
-
-Supported Output options:
-- **OutputFrames**: Set the number of video frames to output. (default - no limitation on frames)
-- **OutputFps**: Duplicate or drop input frames to achieve constant output frame rate fps. (default - same as InputFps)
-- **OutputImageSize**: Performs image rescaling. The format is `wxh`, for example "640x480". (default - same as InputImageSize)
-- **OutputAspect**: Set the video display aspect ratio specified by aspect. For example "4:3", "16:9". (default - same as source)
-- **OutputVideoCodec**: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
-- **OutputVideoQuality**: Use fixed video quality level. Range is a integer number between 1 to 31, with 31 being the worst quality. (default - dynamically set by FFmpeg)
-
-You can also set default values for these options by adding additional attributes to the device resource **StartStreaming**.
-The attribute name consists of a prefix "default" and the option name.
-
-For example:
-```yaml
-deviceResources:
-  - name: "StartStreaming"
-   description: "Start streaming process."
-   attributes:
-     { command: "VIDEO_START_STREAMING",    
-       defaultInputFrameSize: "320x240", 
-       defaultOutputVideoQuality: "31" 
-     }
-   properties:
-     valueType: "Object"
-     readWrite: "W"
-```
-
-> *Note: It's NOT recommended to set default video options in the [cmd/res/profiles/general.usb.camera.yaml](cmd/res/profiles/general.usb.camera.yaml) as they may not be supported by every camera.
-
-### Dynamic Discovery
-The device service supports [dynamic discovery](https://docs.edgexfoundry.org/2.1/microservices/device/Ch-DeviceServices/#dynamic-provisioning).
-During dynamic discovery, the device service scans all connected USB devices and sends the discovered cameras to Core Metadata.
-The device name of the camera discovered by the device service is comprised of Card Name and Serial Number, and the characters colon, space and dot will be replaced with underscores as they are invalid characters for device names in EdgeX.
-Take the camera Logitech C270 as an example, it's Card Name is "C270 HD WEBCAM" and the Serial Number is "B1CF0E50" hence the device name - "C270_HD_WEBCAM-B1CF0E50".
-
-> *Note: Card Name and Serial number are used by the device service to uniquely identify a camera, although those cheaply mass-produced cameras may have the same serial number.
-
-#### Enable the Dynamic Discovery function
-Dynamic discovery is disabled by default to save computing resources.
-If you want the device service to run the discovery periodically, enable it and set a desired interval.
-The interval value must be a [Go duration](https://pkg.go.dev/time#ParseDuration).
-
-[Option 1] Enable from the configuration.toml
-```yaml
-[Device] 
-...
-    [Device.Discovery]
-    Enabled = true
-    Interval = "1h"
-```
-
-[Option 2] Enable from the env
+### Build docker image
 ```shell
-export DEVICE_DISCOVERY_ENABLED=true
-export DEVICE_DISCOVERY_INTERVAL=1h
+make docker
 ```
 
-To manually trigger a Dynamic Discovery, use this [device service API](https://app.swaggerhub.com/apis-docs/EdgeXFoundry1/device-sdk/2.2.0#/default/post_discovery).
+## Run device-usb-camera
+- Docker
+  - For non secure mode
+    ```
+    make gen ds-usb-camera no-secty
+    ```
+  - For secure mode 
+    ```
+    make gen ds-usb-camera
+    ```
+  - Docker Compose start command
+    ```
+    docker-compose -p edgex up -d
+    ```
+- Native
+  ```
+  cd cmd && EDGEX_SECURITY_SECRET_STORE=false ./device-usb-camera
+  ```
 
-#### Provision watcher example
-```shell
-curl -X POST \
--d '[
-   {
-      "provisionwatcher":{
-         "apiVersion":"v2",
-         "name":"USB-Camera-Provision-Watcher",
-         "adminState":"UNLOCKED",
-         "identifiers":{
-            "Path": "."
-         },
-         "serviceName": "device-usb-camera",
-         "profileName": "USB-Camera-General"
-      },
-      "apiVersion":"v2"
-   }
-]' http://localhost:59881/api/v2/provisionwatcher
-```
+## Next Steps
 
-### Keep the paths of existing camera up to date
-The paths (/dev/video*) of the connected cameras may change whenever the cameras are re-connected or the system restarts.
-To ensure the paths of the existing cameras are up to date, the device service scans all the existing cameras to check whether their serial numbers match the connected cameras.
-If there is a mismatch between them, the device service will scan all paths to find the matching device and update the existing device with the correct path.
+[Explore more advanced options](./advanced-options.md)
 
-This check can also be triggered by using the Device Service API `/refreshdevicepaths`.
-For example:
-```shell
-curl -X POST http://localhost:59983/api/v2/refreshdevicepaths
-```
-
-It's recommended to trigger a check after re-plugging cameras.
-
-### Configurable RTSP server hostname and port
-
-The hostname and port of the RTSP server to which the device service publishes video streams can be configured in the [Driver] section of the service configuration located in cmd/res/configuration.toml.
-
-For example:
-```yaml
-[Driver]
-  RtspServerHostName = "localhost"
-  RtspTcpPort = "8554"
-```
+## License
+[Apache-2.0](LICENSE)

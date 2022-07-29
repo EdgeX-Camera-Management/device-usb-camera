@@ -2,10 +2,9 @@
 
 ## Contents
 
-[System Requirements](#system-requirements)
-[How It Works](#how-it-works)
-[Configuration](#configuration)
-
+[System Requirements](#system-requirements)  
+[How It Works](#how-it-works)  
+[Configuration](#configuration)  
 [Dependencies](#dependencies)  
 [Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  
 [Verify the Service](#verify-service-and-device-profiles)   
