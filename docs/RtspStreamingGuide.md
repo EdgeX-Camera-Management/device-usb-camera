@@ -4,12 +4,17 @@
 
 [System Requirements](#system-requirements)  
 [How It Works](#how-it-works)  
-[Configuration](#configuration)  
+[Overview](#overview)  
+[Tested Devices](#tested-devices))  
 [Dependencies](#dependencies)  
+[Get the Source Code](#get-the-source-code)
+[Configuration options](#configuration-options)
 [Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  
 [Verify the Service](#verify-service-and-device-profiles)   
-[Manage Devices](#manage-devices)   
+[Adding Devices using REST API](#adding-devices-using-rest-api)
+[Start Video Streaming](#start-video-streaming)
 [Shutting Down](#shutting-down)  
+[Troubleshooting](#troubleshooting)) 
 [License](#license)
 
 ## System Requirements
@@ -27,7 +32,7 @@
 You must have administrator (sudo) privileges to execute the user guide commands.
 
 ## How It Works
-For an explanation of the architecture, see the [User Guide](UserGuide.md#how-it-works).
+For an explanation of the architecture, see the [Readme](../README.md#how-it-works).
 
 ## Overview
 EdgeX device service for communicating with USB cameras attached to Linux OS platforms.
@@ -161,11 +166,6 @@ Clone the device-usb-camera repository:
    ```bash
    git clone https://github.com/edgexfoundry/device-usb-camera.git
    ```
-## Deploy EdgeX and USB Device Camera Microservice
-### Building the docker image
-```shell
-make docker
-```
 
 ## Configuration options
 ### Configurable RTSP server hostname and port
@@ -181,6 +181,11 @@ For example:
       <i>Sample: Snippet from configuration.toml</i>
 </p>
 
+## Deploy EdgeX and USB Device Camera Microservice
+### Building the docker image
+```shell
+make docker
+```
 
 ### Run the Service
 
