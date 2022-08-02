@@ -5,16 +5,15 @@
 [System Requirements](#system-requirements)  
 [How It Works](#how-it-works)  
 [Overview](#overview)  
-[Tested Devices](#tested-devices))  
+[Tested Devices](#tested-devices)  
 [Dependencies](#dependencies)  
-[Get the Source Code](#get-the-source-code)
-[Configuration options](#configuration-options)
-[Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  
-[Verify the Service](#verify-service-and-device-profiles)   
-[Adding Devices using REST API](#adding-devices-using-rest-api)
-[Start Video Streaming](#start-video-streaming)
+[Get the Source Code](#get-the-source-code)  
+[Configuration Options](#configuration-options)  
+[Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  [Verify the Service](#verify-service-and-device-profiles)   
+[Adding Devices using REST API](#adding-devices-using-rest-api)  
+[Start Video Streaming](#start-video-streaming)  
 [Shutting Down](#shutting-down)  
-[Troubleshooting](#troubleshooting)) 
+[Troubleshooting](#troubleshooting)  
 [License](#license)
 
 ## System Requirements
@@ -32,7 +31,7 @@
 You must have administrator (sudo) privileges to execute the user guide commands.
 
 ## How It Works
-For an explanation of the architecture, see the [Readme](../README.md#how-it-works).
+For an explanation of the architecture, [see here](../README.md#how-it-works).
 
 ## Overview
 EdgeX device service for communicating with USB cameras attached to Linux OS platforms.
@@ -44,7 +43,8 @@ This service provides the following capabilities:
 - An [RTSP server](https://github.com/aler9/rtsp-simple-server) is embedded in the dockerized device service. 
 
 ## Tested Devices
-The following devices have been tested with EdgeX:
+The following devices have been tested with EdgeX USB Camera Device Service:  
+Note: Results may vary based on camera hardware/firmware version and operating system support.
 <!-- sorted alphabetically -->
 - AUKEY PC-LM1E Webcam
 - HP w200 Webcam
@@ -140,14 +140,11 @@ Clone the EdgeX compose repository
 Install the build, media streaming, and parsing tools:
 
    ```bash
-   sudo apt install build-essential vlc ffmpeg jq curl
+   sudo apt install build-essential ffmpeg jq curl
    ```
 
 NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
-NOTE: An additional package may be required to build the device-use-camera service.  
-```
-sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
-```
+
 
 ### Tool Descriptions
 The table below lists command line tools this guide uses to help with EdgeX configuration and device setup.
@@ -167,7 +164,7 @@ Clone the device-usb-camera repository:
    git clone https://github.com/edgexfoundry/device-usb-camera.git
    ```
 
-## Configuration options
+## Configuration Options
 ### Configurable RTSP server hostname and port
 The hostname and port of the RTSP server can be configured in the `[Driver]` section of the [configuration.toml](../cmd/res/configuration.toml) The default vaules can be used in this guide.
 
@@ -191,8 +188,8 @@ make docker
 
 1. Navigate to the `edgex-compose/compose-builder` directory.
 
-2. Run EdgeX with the microservice:
-
+2. Run EdgeX with the microservice:  
+**NOTE:** This command runs the EdgeX microservices in non secure mode.
    ```bash
     make run no-secty ds-usb-camera 
    ```
@@ -217,7 +214,8 @@ make docker
 2. Check that the device service is added to EdgeX:
 
    ```bash
-   curl -s http://localhost:59881/api/v2/deviceservice/name/device-usb-camera | jq
+   curl -s http://localhost:59881/api/v2/deviceservice/name/device-usb-camera | jq .
+   ```
    ```
    Successful:
    ```json
@@ -280,7 +278,7 @@ Devices can either be added to the service by defining them in a static configur
    ```
 
 ## Start Video Streaming
-Unless the device service is configured to stream video from the camera automatically, a 'StartStreaming' command must be sent to the device service.
+Unless the device service is configured to stream video from the camera automatically, a `StartStreaming` command must be sent to the device service.
 
 There are two types of options:
 - The options start with **Input** prefix are used for the camera, such as specifying the image size and pixel format.
