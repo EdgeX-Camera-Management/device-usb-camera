@@ -15,9 +15,9 @@ NOTE: An additional package may be required to build the device-use-camera servi
 
 Each device resource should have a mandatory attribute named `command` to indicate what action the device service should take for it.
 
-There are two types of `command`:
+Commands can be one of two types:
 
-* The commands started with **METADATA_** prefix are used to get camera metadata.
+* Commands starting with **METADATA_** prefix are used to get camera metadata.
 
 ```yaml
 deviceResources:
@@ -35,7 +35,7 @@ deviceResources:
       <i>Sample: Snippet from general.usb.camera.yaml</i>
 </p>
 
-* The commands start with **VIDEO_** prefix are related to video stream.
+* Commands starting with **VIDEO_** prefix are related to video stream.
 
 For example:
 ```yaml
