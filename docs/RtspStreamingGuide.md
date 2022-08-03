@@ -9,7 +9,8 @@
 [Dependencies](#dependencies)  
 [Get the Source Code](#get-the-source-code)  
 [Configuration Options](#configuration-options)  
-[Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  [Verify the Service](#verify-service-and-device-profiles)   
+[Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  
+[Verify the Service](#verify-service-and-device-profiles)   
 [Adding Devices using REST API](#adding-devices-using-rest-api)  
 [Start Video Streaming](#start-video-streaming)  
 [Shutting Down](#shutting-down)  
@@ -40,7 +41,7 @@ This service provides the following capabilities:
 - Camera status
 - Video stream reference
 - FFmpeg framework to capture video frames and stream them to an RTSP server.
-- An [RTSP server](https://github.com/aler9/rtsp-simple-server) is embedded in the dockerized device service. 
+- An [RTSP server](https://github.com/aler9/rtsp-simple-server) which is embedded in the USB Camera Device Service. 
 
 ## Tested Devices
 The following devices have been tested with EdgeX USB Camera Device Service:  
@@ -163,21 +164,6 @@ Clone the device-usb-camera repository:
    ```bash
    git clone https://github.com/edgexfoundry/device-usb-camera.git
    ```
-
-## Configuration Options
-### Configurable RTSP server hostname and port
-The hostname and port of the RTSP server can be configured in the `[Driver]` section of the [configuration.toml](../cmd/res/configuration.toml) The default vaules can be used in this guide.
-
-For example:
-```yaml
-[Driver]
-  RtspServerHostName = "localhost"
-  RtspTcpPort = "8554"
-```
-<p align="left">
-      <i>Sample: Snippet from configuration.toml</i>
-</p>
-
 ## Deploy EdgeX and USB Device Camera Microservice
 ### Building the docker image
 ```shell
@@ -354,6 +340,20 @@ To stop all EdgeX services (containers), execute the `make down` command:
    ```bash
    make clean
    ```
+## Optional
+### Configuration Options
+### Configurable RTSP server hostname and port
+The hostname and port of the RTSP server can be configured in the `[Driver]` section of the [/cmd/res/configuration.toml](../cmd/res/configuration.toml). The default vaules can be used for this guide.
+
+For example:
+```yaml
+[Driver]
+  RtspServerHostName = "localhost"
+  RtspTcpPort = "8554"
+```
+<p align="left">
+      <i>Sample: Snippet from configuration.toml</i>
+</p>
 
 ## Troubleshooting
 ### StreamingStatus

@@ -5,7 +5,7 @@
 [Run device-usb-service](#run-device-usb-camera)  
 [Next Steps](#next-steps)
 
-NOTE: An additional package may be required to build the device-use-camera service
+> NOTE: An additional package may be required to build the device-use-camera service
 ```
  sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
  ```
