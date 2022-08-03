@@ -175,7 +175,7 @@ make docker
 1. Navigate to the `edgex-compose/compose-builder` directory.
 
 2. Run EdgeX with the microservice:  
-**NOTE:** This command runs the EdgeX microservices in non secure mode.
+> **NOTE:** This command runs the EdgeX microservices in non secure mode.
    ```bash
     make run no-secty ds-usb-camera 
    ```
@@ -230,8 +230,8 @@ make docker
 Devices can either be added to the service by defining them in a static configuration file, discovering devices dynamically, or with the REST API. For this example, the device will be added using the REST API.
 
 1. Edit the information to appropriately match the camera. The device's protocol properties contain:  
-   * **Path** is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
-   * **AutoStreaming** indicates whether the device service should automatically start video streaming for cameras. Default value is false.
+   * `Path` is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
+   * `AutoStreaming` indicates whether the device service should automatically start video streaming for cameras. Default value is false.
    
    ```bash
    curl -X POST -H 'Content-Type: application/json'  \
@@ -267,13 +267,13 @@ Devices can either be added to the service by defining them in a static configur
 Unless the device service is configured to stream video from the camera automatically, a `StartStreaming` command must be sent to the device service.
 
 There are two types of options:
-- The options start with **Input** prefix are used for the camera, such as specifying the image size and pixel format.
-- The options start with **Output** prefix are used for the output video, such as specifying aspect ratio and quality.
+- The options start with `Input` prefix are used for the camera, such as specifying the image size and pixel format.
+- The options start with `Output` prefix are used for the output video, such as specifying aspect ratio and quality.
 
 These options can be passed in through Object value when calling StartStreaming.
 
 Query parameter:
-- **DeviceName**: The name of the camera
+- `DeviceName`: The name of the camera
 
 For example:
 ```shell
@@ -286,24 +286,24 @@ curl -X PUT -d '{
 ```
 
 Supported Input options:
-- **InputFps**: Ignore original timestamps and instead generate timestamps assuming constant frame rate fps. (default - same as source)
-- **InputImageSize**: Specifies the image size of the camera. The format is `wxh`, for example "640x480". (default - automatically selected by FFmpeg)
-- **InputPixelFormat**: Set the preferred pixel format (for raw video). (default - automatically selected by FFmpeg)
+- `InputFps`: Ignore original timestamps and instead generate timestamps assuming constant frame rate fps. (default - same as source)
+- `InputImageSize`: Specifies the image size of the camera. The format is `wxh`, for example "640x480". (default - automatically selected by FFmpeg)
+- `InputPixelFormat`: Set the preferred pixel format (for raw video). (default - automatically selected by FFmpeg)
 
 Supported Output options:
-- **OutputFrames**: Set the number of video frames to output. (default - no limitation on frames)
-- **OutputFps**: Duplicate or drop input frames to achieve constant output frame rate fps. (default - same as InputFps)
-- **OutputImageSize**: Performs image rescaling. The format is `wxh`, for example "640x480". (default - same as InputImageSize)
-- **OutputAspect**: Set the video display aspect ratio specified by aspect. For example "4:3", "16:9". (default - same as source)
-- **OutputVideoCodec**: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
-- **OutputVideoQuality**: Use fixed video quality level. Range is a integer number between 1 to 31, with 31 being the worst quality. (default - dynamically set by FFmpeg)
+- `OutputFrames`: Set the number of video frames to output. (default - no limitation on frames)
+- `OutputFps`: Duplicate or drop input frames to achieve constant output frame rate fps. (default - same as InputFps)
+- `OutputImageSize`: Performs image rescaling. The format is `wxh`, for example "640x480". (default - same as InputImageSize)
+- `OutputAspect`: Set the video display aspect ratio specified by aspect. For example "4:3", "16:9". (default - same as source)
+- `OutputVideoCodec`: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
+- `OutputVideoQuality`: Use fixed video quality level. Range is a integer number between 1 to 31, with 31 being the worst quality. (default - dynamically set by FFmpeg)
 
 
 ### Determine Stream Uri of Camera
 The device service provides a way to determine the stream URI of a camera.
 
 Query parameter:
-- **DeviceName**: The name of the camera
+- `DeviceName`: The name of the camera
 
 ```
 curl -s http://localhost:59882/api/v2/device/name/<device name>/StreamURI | jq -r '"StreamURI: " + '.event.readings[].value''
