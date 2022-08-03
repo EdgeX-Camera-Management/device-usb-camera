@@ -37,11 +37,11 @@ For an explanation of the architecture, [see here](../README.md#how-it-works).
 ## Overview
 EdgeX device service for communicating with USB cameras attached to Linux OS platforms.
 This service provides the following capabilities:
-- V4L2 API to get camera metadata.
+- V4L2 API to get camera metadata
 - Camera status
 - Video stream reference
-- FFmpeg framework to capture video frames and stream them to an RTSP server.
-- An [RTSP server](https://github.com/aler9/rtsp-simple-server) which is embedded in the USB Camera Device Service. 
+- FFmpeg framework to capture video frames and stream them to an RTSP server
+- An embedded [RTSP server](https://github.com/aler9/rtsp-simple-server) server
 
 ## Tested Devices
 The following devices have been tested with EdgeX USB Camera Device Service:  

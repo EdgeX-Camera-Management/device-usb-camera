@@ -35,10 +35,10 @@ The figure below illustrates the software flow through the architecture componen
       <i>Figure 1: Software Flow</i>
 </p>
 
-1. **EdgeX Device Discovery:** Camera device microservices probe network and platform for video devices at a configurable interval. Devices that do not currently exist and that satisfy Provision Watcher filter criteria are added to Core Metadata.
-2. **Application Device Discovery:** Query Core Metadata for devices and associated configuration.
-3. **Application Device Configuration:** Set configuration and initiate device actions through a REST API representing the resources of the video device.
-4. **Pipeline Control:** The application initiates Video Analytics Pipeline through HTTP Post Request.
+1. **EdgeX Device Discovery:** Camera device microservices probe network and platform for video devices at a configurable interval. Devices that do not currently exist and that satisfy Provision Watcher filter criteria are added to `Core Metadata`.
+2. **Application Device Discovery:** The microservices then query `Core Metadata` for devices and associated configuration.
+3. **Application Device Configuration:** The configuration and triggering of device actions are done through a REST API representing the resources of the video device.
+4. **Pipeline Control:** The application initiates the `Video Analytics Pipeline` through HTTP Post Request.
 5. **Publish Inference Events/Data:** Analytics inferences are formatted and passed to the destination message bus specified in the request.
 6. **Export Data:** Publish prepared (transformed, enriched, filtered, etc.) and groomed (formatted, compressed, encrypted, etc.) data to external systems (be it analytics package, enterprise or on-premises application, cloud systems like Azure IoT, AWS IoT, or Google IoT Core, etc.
 
