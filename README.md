@@ -5,7 +5,7 @@
 ## Overview
 The USB Device Service is a microservice created to address the lack of standardization and automation of camera discovery and onboarding. EdgeX Foundry is a flexible microservice-based architecture created to promote the interoperability of multiple device interface combinations at the edge. In an EdgeX deployment, the USB Device Service controls and communicates with USB cameras, while EdgeX Foundry presents a standard interface to application developers. With normalized connectivity protocols and a vendor-neutral architecture, EdgeX paired with USB Camera Device Service, simplifies deployment of edge camera devices.
 
-Specifically, the device service uses V4L2 API to get camera metadata, FFmpeg framework to capture video frames and stream them to an [RTSP server](https://github.com/aler9/rtsp-simple-server), which is embedded in the docerized device service. This allows the video stream to be integrated into the [larger architecture](#how-it-works).
+Specifically, the device service uses V4L2 API to get camera metadata, FFmpeg framework to capture video frames and stream them to an [RTSP server](https://github.com/aler9/rtsp-simple-server), which is embedded in the dockerized device service. This allows the video stream to be integrated into the [larger architecture](#how-it-works).
 
 Use the USB Device Service to streamline and scale your edge camera device deployment. 
 
