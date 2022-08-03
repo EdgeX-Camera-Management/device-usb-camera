@@ -141,7 +141,7 @@ Clone the EdgeX compose repository
 Install the build, media streaming, and parsing tools:
 
    ```bash
-   sudo apt install build-essential ffmpeg jq curl
+   sudo apt install build-essential ffmpeg jq curl v4l-utils
    ```
 
 NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
@@ -230,7 +230,22 @@ make docker
 Devices can either be added to the service by defining them in a static configuration file, discovering devices dynamically, or with the REST API. For this example, the device will be added using the REST API.
 
 1. Edit the information to appropriately match the camera. The device's protocol properties contain:  
-   * `Path` is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
+   * `Path` is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through by running the command below:
+
+   ```
+   v4l2-ctl --list-devices
+   ```
+
+
+The output should look similar to this:
+   ```
+   NexiGo N930AF FHD Webcam: NexiG (usb-0000:00:14.0-1):
+        /dev/video6
+        /dev/video7
+        /dev/media2
+   ```
+
+   For this example, the `Path` is `/dev/video6`.
    * `AutoStreaming` indicates whether the device service should automatically start video streaming for cameras. Default value is false.
    
    ```bash
