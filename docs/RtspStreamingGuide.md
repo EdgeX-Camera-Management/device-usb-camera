@@ -197,7 +197,11 @@ The table below lists command line tools this guide uses to help with EdgeX conf
 
 ### Run the Service
 
-1. Navigate to the `edgex-compose/compose-builder` directory.
+1. Navigate to the Edgex compose directory.
+
+   ```shell
+   cd ~/edgex/edgex-compose/compose-builder
+   ```
 
 2. Run EdgeX with the microservice:  
 > **NOTE:** This command runs the EdgeX microservices in non secure mode.
@@ -227,7 +231,7 @@ The table below lists command line tools this guide uses to help with EdgeX conf
    ```bash
    curl -s http://localhost:59881/api/v2/deviceservice/name/device-usb-camera | jq .
    ```
-   ```
+   
    Successful:
    ```json
    {
