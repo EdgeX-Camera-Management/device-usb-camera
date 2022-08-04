@@ -163,7 +163,7 @@ The table below lists command line tools this guide uses to help with EdgeX conf
 
 | Tool        | Description | Note |
 | ----------- | ----------- |----------- |
-| `build-essential` | used to compiling software in Linux |
+| `build-essential` | deveopment tools for compiling software in Linux | used to compile the various services|
 | `ffmpeg`     | Multimedia framework | used to play video streams from usb camera |
 | `curl`     | Allows the user to connect to services such as EdgeX. |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
 |  `jq`   |Parses the JSON object returned from the `curl` requests. |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
