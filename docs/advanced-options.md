@@ -24,19 +24,19 @@ curl -X PUT -d '{
 ```
 
 Supported Input options:
-- **InputFps**: Ignore original timestamps and instead generate timestamps assuming constant frame rate fps. (default - same as source)
-- **InputImageSize**: Specifies the image size of the camera. The format is `wxh`, for example "640x480". (default - automatically selected by FFmpeg)
-- **InputPixelFormat**: Set the preferred pixel format (for raw video). (default - automatically selected by FFmpeg)
+- `InputFps`: Ignore original timestamps and instead generate timestamps assuming constant frame rate fps. (default - same as source)
+- `InputImageSize`: Specifies the image size of the camera. The format is `wxh`, for example "640x480". (default - automatically selected by FFmpeg)
+- `InputPixelFormat`: Set the preferred pixel format (for raw video). (default - automatically selected by FFmpeg)
 
 Supported Output options:
-- **OutputFrames**: Set the number of video frames to output. (default - no limitation on frames)
-- **OutputFps**: Duplicate or drop input frames to achieve constant output frame rate fps. (default - same as InputFps)
-- **OutputImageSize**: Performs image rescaling. The format is `wxh`, for example "640x480". (default - same as InputImageSize)
-- **OutputAspect**: Set the video display aspect ratio specified by aspect. For example "4:3", "16:9". (default - same as source)
-- **OutputVideoCodec**: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
-- **OutputVideoQuality**: Use fixed video quality level. Range is a integer number between 1 to 31, with 31 being the worst quality. (default - dynamically set by FFmpeg)
+- `OutputFrames`: Set the number of video frames to output. (default - no limitation on frames)
+- `OutputFps`: Duplicate or drop input frames to achieve constant output frame rate fps. (default - same as InputFps)
+- `OutputImageSize`: Performs image rescaling. The format is `wxh`, for example "640x480". (default - same as InputImageSize)
+- `OutputAspect`: Set the video display aspect ratio specified by aspect. For example "4:3", "16:9". (default - same as source)
+- `OutputVideoCodec**: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
+- `OutputVideoQuality`: Use fixed video quality level. Range is a integer number between 1 to 31, with 31 being the worst quality. (default - dynamically set by FFmpeg)
 
-You can also set default values for these options by adding additional attributes to the device resource **StartStreaming**.
+You can also set default values for these options by adding additional attributes to the device resource `StartStreaming`.
 The attribute name consists of a prefix "default" and the option name.
 
 For example:
