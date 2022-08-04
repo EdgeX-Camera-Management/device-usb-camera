@@ -233,7 +233,7 @@ Devices can either be added to the service by defining them in a static configur
 1. Edit the information to appropriately match the camera. The device's protocol properties contain:  
    * `Path` is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through by running the command below:
 
-   ```
+   ```bash
    v4l2-ctl --list-devices
    ```
 
@@ -321,7 +321,7 @@ The device service provides a way to determine the stream URI of a camera.
 Query parameter:
 - `DeviceName`: The name of the camera
 
-```
+```bash
 curl -s http://localhost:59882/api/v2/device/name/<device name>/StreamURI | jq -r '"StreamURI: " + '.event.readings[].value''
 ```
 
@@ -375,7 +375,7 @@ For example:
 ### StreamingStatus
 To verify the usb camera is set to stream video, use the command below. 
 
-```
+```bash
 curl http://localhost:59882/api/v2/device/name/<device name>/StreamingStatus | jq -r '"StreamingStatus: " + (.event.readings[].objectValue.IsStreaming|tostring)'
 ```
 - please replace <device name> with the name of the device you want to test
