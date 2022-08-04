@@ -35,7 +35,8 @@ You must have administrator (sudo) privileges to execute the user guide commands
 For an explanation of the architecture, [see here](../README.md#how-it-works).
 
 ## Overview
-EdgeX device service for communicating with USB cameras attached to Linux OS platforms.
+The EdgeX usb device service is designed for communicating with USB cameras attached to Linux OS platforms. This guide will help configure and build the usb device service and start streaming video from the USB camera.
+
 This service provides the following capabilities:
 - V4L2 API to get camera metadata
 - Camera status
