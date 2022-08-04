@@ -131,9 +131,19 @@ Install Docker from the official repository as documented on the [Docker Compose
    sudo chmod +x /usr/local/bin/docker-compose
    ```
 
-###  Download EdgeX Compose
-Clone the EdgeX compose repository
+###  Download EdgeX Compose Repository
 
+1. Create a directory for the EdgeX compose repository:
+   ```bash
+   mkdir ~/edgex
+   ```
+
+2. Change into newly created directory:
+   ```bash
+   cd ~/edgex
+   ```
+
+3. Clone the EdgeX compose repository
    ```bash
    git clone https://github.com/edgexfoundry/edgex-compose.git
    ```
