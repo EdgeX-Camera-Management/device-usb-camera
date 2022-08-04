@@ -152,7 +152,7 @@ Install Docker from the official repository as documented on the [Docker Compose
 Install the build, media streaming, and parsing tools:
 
    ```bash
-   sudo apt install build-essential ffmpeg jq curl v4l-utils
+   sudo apt install build-essential ffmpeg curl jq v4l-utils
    ```
 
 NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
@@ -163,14 +163,22 @@ The table below lists command line tools this guide uses to help with EdgeX conf
 
 | Tool        | Description | Note |
 | ----------- | ----------- |----------- |
-| **curl**     | Allows the user to connect to services such as EdgeX. |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
-| **jq**   |Parses the JSON object returned from the `curl` requests. |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
+| `build-essential` | used to compiling software in Linux |
+| `ffmpeg`     | Multimedia framework | used to play video streams from usb camera |
+| `curl`     | Allows the user to connect to services such as EdgeX. |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
+|  `jq`   |Parses the JSON object returned from the `curl` requests. |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
+| **v4l-utils**   | used to handle media devices | This utility is used to determine the video stream path |
 
 >Table 1: Command Line Tools
 
 ## Get the Source Code
 
-Clone the device-usb-camera repository:
+1. Change into newly created directory:
+   ```bash
+   cd ~/edgex
+   ```
+
+2. Clone the device-usb-camera repository:
 
    ```bash
    git clone https://github.com/edgexfoundry/device-usb-camera.git
