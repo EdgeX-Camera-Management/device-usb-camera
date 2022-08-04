@@ -185,9 +185,15 @@ The table below lists command line tools this guide uses to help with EdgeX conf
    ```
 ## Deploy EdgeX and USB Device Camera Microservice
 ### Building the docker image
-```shell
-make docker
-```
+1. Change into newly created directory:
+   ```bash
+   cd ~/edgex/device-usb-camera
+   ```
+
+1. Build the docker image of the device-usb-camera service:
+   ```bash
+   make docker
+   ```
 
 ### Run the Service
 
@@ -307,7 +313,7 @@ There are two types of options:
 These options can be passed in through Object value when calling StartStreaming.
 
 Query parameter:
-- `DeviceName`: The name of the camera
+- `device name`: The name of the camera
 
 For example:
 ```shell
@@ -337,7 +343,7 @@ Supported Output options:
 The device service provides a way to determine the stream URI of a camera.
 
 Query parameter:
-- `DeviceName`: The name of the camera
+- `device name`: The name of the camera
 
 ```bash
 curl -s http://localhost:59882/api/v2/device/name/<device name>/StreamURI | jq -r '"StreamURI: " + '.event.readings[].value''
