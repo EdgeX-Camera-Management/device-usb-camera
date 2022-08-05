@@ -104,6 +104,11 @@ make docker
     ```
     docker-compose -p edgex up -d
     ```
+
+  - Docker Compose clean command
+    ```bash
+    make clean
+    ```  
 - Native
   ```
   cd cmd && EDGEX_SECURITY_SECRET_STORE=false ./device-usb-camera
