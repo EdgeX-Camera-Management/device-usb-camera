@@ -13,6 +13,9 @@ There are two types of options:
 
 These options can be passed in through object value when calling `StartStreaming`.
 
+Query parameter:
+- `device name`: The name of the camera
+
 For example:
 ```shell
 curl -X PUT -d '{
@@ -20,7 +23,7 @@ curl -X PUT -d '{
       "InputImageSize": "640x480",
       "OutputVideoQuality": "5"
     }
-}' http://localhost:59882/api/v2/device/name/hp-w200-01/StartStreaming
+}' http://localhost:59882/api/v2/device/name/<device name>/StartStreaming
 ```
 
 Supported Input options:

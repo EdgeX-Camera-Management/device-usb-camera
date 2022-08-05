@@ -59,10 +59,11 @@ The software has dependencies, including Git, Docker, Docker Compose, and assort
 Install the media utility tool:
 
    ```bash
-   sudo apt install v4l-utils
+   sudo apt install ffmpeg v4l-utils
    ```
 
-This utility is used to determine the video stream path of a usb camera. 
+- `ffmpeg` is used to view the video stream
+- `v4l-utils` is used to determine the video stream path of a usb camera
 
 ### Install Docker
 Install Docker from the official repository as documented on the [Docker](https://docs.docker.com/engine/install/ubuntu/) site.

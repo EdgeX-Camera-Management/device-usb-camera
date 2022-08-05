@@ -97,7 +97,7 @@ Install Docker from the official repository as documented on the [Docker Compose
 Install the build, media streaming, and parsing tools:
 
    ```bash
-   sudo apt install build-essential ffmpeg jq curl
+   sudo apt install build-essential jq curl
    ```
 
 NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
