@@ -1,7 +1,5 @@
 # Setup
 
-The software has dependencies, including Git, Docker, Docker Compose, and assorted command line tools. Follow the instructions below to install any dependency that is not already installed.  
-
 ## Contents
 [System Requirements](#system-requirements)  
 [Dependencies](#dependencies)  
@@ -18,6 +16,9 @@ The software has dependencies, including Git, Docker, Docker Compose, and assort
 - Ubuntu 20.04.4 LTS
 - USB-compliant Camera
 
+## Dependencies
+
+The software has dependencies, including Git, Docker, Docker Compose, and assorted command line tools. Follow the instructions below to install any dependency that is not already installed.  
 
 ## Install Git
 Install Git from the official repository as documented on the [Git SCM](https://git-scm.com/download/linux) site.
