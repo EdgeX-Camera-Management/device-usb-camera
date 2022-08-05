@@ -196,12 +196,25 @@ Install Docker from the official repository as documented on the [Docker Compose
    ```bash
    make docker
    ```
+1. Navigate to the Edgex compose directory.
 
+   ```shell
+   cd ~/edgex/edgex-compose/compose-builder
+   ```
+   
 1. Update `.env` file to add the registry and image version variable for device-usb-camera:
 
    Add the following registry and version information:
    ```env
    DEVICE_USBCAM_VERSION=0.0.0-dev
+   ```
+
+1. Update the `add-device-usb-camera.yml` to point to the local image:
+
+   ```yml
+   services:
+      device-usb-camera:
+         image: ${REPOSITORY}/device-usb-camera${ARCH}:${DEVICE_USBCAM_VERSION}
    ```
 ### Run the Service
 
