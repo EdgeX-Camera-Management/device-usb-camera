@@ -113,17 +113,32 @@ The table below lists command line tools this guide uses to help with EdgeX conf
 
 >Table 1: Command Line Tools
 
-##  Download EdgeX Compose
-Clone the EdgeX compose repository
+###  Download EdgeX Compose Repository
 
+1. Create a directory for the EdgeX compose repository:
+   ```bash
+   mkdir ~/edgex
+   ```
+
+2. Change into newly created directory:
+   ```bash
+   cd ~/edgex
+   ```
+
+3. Clone the EdgeX compose repository
    ```bash
    git clone https://github.com/edgexfoundry/edgex-compose.git
    ```
 
 
-## Get the Source Code
+### Get the Device USB Camera Source Code
 
-Clone the device-usb-camera repository:
+1. Change into the edgex directory:
+   ```bash
+   cd ~/edgex
+   ```
+
+2. Clone the device-usb-camera repository:
 
    ```bash
    git clone https://github.com/edgexfoundry/device-usb-camera.git
@@ -147,7 +162,7 @@ sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
 ```      
 
 ## Next Steps
-[Build and run the software](./general-usage)  
+[Build and run the software](./general-usage.md)  
 
 ## License
 [Apache-2.0](LICENSE)

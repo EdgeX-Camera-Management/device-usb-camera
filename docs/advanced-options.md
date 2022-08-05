@@ -8,10 +8,10 @@
 
 ## Video options
 There are two types of options:
-- The options start with **Input** prefix are used for the camera, such as specifying the image size and pixel format.
-- The options start with **Output** prefix are used for the output video, such as specifying aspect ratio and quality.
+- The options start with `Input` prefix are used for the camera, such as specifying the image size and pixel format.
+- The options start with `Output` prefix are used for the output video, such as specifying aspect ratio and quality.
 
-These options can be passed in through object value when calling StartStreaming.
+These options can be passed in through object value when calling `StartStreaming`.
 
 For example:
 ```shell
@@ -33,7 +33,7 @@ Supported Output options:
 - `OutputFps`: Duplicate or drop input frames to achieve constant output frame rate fps. (default - same as InputFps)
 - `OutputImageSize`: Performs image rescaling. The format is `wxh`, for example "640x480". (default - same as InputImageSize)
 - `OutputAspect`: Set the video display aspect ratio specified by aspect. For example "4:3", "16:9". (default - same as source)
-- `OutputVideoCodec**: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
+- `OutputVideoCodec`: Set the video codec. For example "mpeg4", "h264". (default - mpeg4)
 - `OutputVideoQuality`: Use fixed video quality level. Range is a integer number between 1 to 31, with 31 being the worst quality. (default - dynamically set by FFmpeg)
 
 You can also set default values for these options by adding additional attributes to the device resource `StartStreaming`.

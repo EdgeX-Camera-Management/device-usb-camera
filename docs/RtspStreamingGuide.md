@@ -55,8 +55,6 @@ Note: Results may vary based on camera hardware/firmware version and operating s
 ## Dependencies
 The software has dependencies, including Git, Docker, Docker Compose, and assorted command line tools. Follow the instructions linked here to install any dependency that is not already installed [see here](setup.md).
 
-
-   
 ### Install additional Tools
 Install the media utility tool:
 

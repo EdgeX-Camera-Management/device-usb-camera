@@ -5,10 +5,7 @@
 [Run device-usb-service](#run-device-usb-camera)  
 [Next Steps](#next-steps)
 
-> NOTE: An additional package may be required to build the device-use-camera service
-```
- sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
- ```
+
 ## Configure and Build the Service
 
 ### Define the device profile
@@ -17,7 +14,7 @@ Each device resource should have a mandatory attribute named `command` to indica
 
 Commands can be one of two types:
 
-* Commands starting with **METADATA_** prefix are used to get camera metadata.
+* Commands starting with `METADATA_` prefix are used to get camera metadata.
 
 ```yaml
 deviceResources:
@@ -35,7 +32,7 @@ deviceResources:
       <i>Sample: Snippet from general.usb.camera.yaml</i>
 </p>
 
-* Commands starting with **VIDEO_** prefix are related to video stream.
+* Commands starting with `VIDEO_` prefix are related to video stream.
 
 For example:
 ```yaml
@@ -60,8 +57,8 @@ For all supported commands, refer to the sample at [general.usb.camera.yaml](../
 ### Define the device
 
 The device's protocol properties contain:
-* **Path** is a file descriptor of camera created by OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
-* **AutoStreaming** indicates whether the device service should automatically start video streaming for cameras. Default value is false.
+* `Path` is a file descriptor of camera created by OS. You can find the path of the connected USB camera through [v4l2-ctl](https://linuxtv.org/wiki/index.php/V4l-utils) utility.
+* `AutoStreaming` indicates whether the device service should automatically start video streaming for cameras. Default value is false.
 
 For example:
 ```yaml
