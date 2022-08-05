@@ -76,6 +76,30 @@ Install Git from the official repository as documented on the [Git SCM](https://
    sudo apt install git
    ```
 
+   
+### Install Tools
+Install the build, media streaming, and parsing tools:
+
+   ```bash
+   sudo apt install build-essential ffmpeg curl jq v4l-utils
+   ```
+
+NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
+
+
+### Tool Descriptions
+The table below lists command line tools this guide uses to help with EdgeX configuration and device setup.
+
+| Tool        | Description | Note |
+| ----------- | ----------- |----------- |
+| `build-essential` | Deveopment tools for compiling the Edgex software in Linux | Includes build tools to allow Edgex to be build in Linux.|
+| `ffmpeg`     | Multimedia framework capable of video playback | The package `ffmpeg` is used to play video streams from a usb camera. |
+| `curl`     | Allows the user to connect to services such as EdgeX |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
+|  `jq`   |Parses the JSON object returned from the `curl` requests |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
+| `v4l-utils`   | Utility for interecting with media devices | This utility is used to determine the video stream path of a usb camera. |
+
+>Table 1: Command Line Tools
+
 ### Install Docker
 Install Docker from the official repository as documented on the [Docker](https://docs.docker.com/engine/install/ubuntu/) site.
 
@@ -148,32 +172,10 @@ Install Docker from the official repository as documented on the [Docker Compose
    git clone https://github.com/edgexfoundry/edgex-compose.git
    ```
 
-### Install Tools
-Install the build, media streaming, and parsing tools:
 
-   ```bash
-   sudo apt install build-essential ffmpeg curl jq v4l-utils
-   ```
+## Get the Device Usb camera Source Code
 
-NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
-
-
-### Tool Descriptions
-The table below lists command line tools this guide uses to help with EdgeX configuration and device setup.
-
-| Tool        | Description | Note |
-| ----------- | ----------- |----------- |
-| `build-essential` | Deveopment tools for compiling the Edgex software in Linux | Includes build tools to allow Edgex to be build in Linux.|
-| `ffmpeg`     | Multimedia framework capable of video playback | The package `ffmpeg` is used to play video streams from a usb camera. |
-| `curl`     | Allows the user to connect to services such as EdgeX |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
-|  `jq`   |Parses the JSON object returned from the `curl` requests |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
-| `v4l-utils`   | Utility for interecting with media devices | This utility is used to determine the video stream path of a usb camera. |
-
->Table 1: Command Line Tools
-
-## Get the Source Code
-
-1. Change into newly created directory:
+1. Change into the edgex directory:
    ```bash
    cd ~/edgex
    ```
@@ -195,6 +197,12 @@ The table below lists command line tools this guide uses to help with EdgeX conf
    make docker
    ```
 
+1. Update `.env` file to add the registry and image version variable for device-usb-camera:
+
+   Add the following registry and version information:
+   ```env
+   DEVICE_USBCAM_VERSION=0.0.0-dev
+   ```
 ### Run the Service
 
 1. Navigate to the Edgex compose directory.
