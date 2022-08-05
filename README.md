@@ -10,23 +10,6 @@ Specifically, the device service uses V4L2 API to get camera metadata, FFmpeg fr
 Use the USB Device Service to streamline and scale your edge camera device deployment. 
 
 ## How It Works
-Note if your build fails with errors like:
-
-```
-.../go4vl@v0.0.2/v4l2/capability.go:48:33: could not determine kind of name for C.V4L2_CAP_IO_MC
-.../go4vl@v0.0.2/v4l2/capability.go:46:33: could not determine kind of name for C.V4L2_CAP_META_OUTPUT
-```
-
-You are missing the appropriate kernal headers needed by the `github.com/vladimirvivien/go4vl` module
-One possible solution is to manually download and install a more recent version of the libc-dev for your OS.
-
-In the case of Ubuntu 20.04, one is not available in the normal repositories, so you can get it via these steps:
-
-```
-wget https://launchpad.net/~canonical-kernel-team/+archive/ubuntu/bootstrap/+build/20950478/+files/linux-libc-dev_5.10.0-14.15_amd64.deb
-sudo dpkg -i linux-libc-dev_5.10.0-14.15_amd64.deb
-```
-
 
 The figure below illustrates the software flow through the architecture components.
 
@@ -44,7 +27,7 @@ The figure below illustrates the software flow through the architecture componen
 
 # Getting Started
 
-For general usage, use [this guide.](./docs/general-usage.md)  
+To set up your system, follow [this guide.](./docs/setup.md)  
 For a full walkthrough on how to use this service and RTSP streaming, follow [this guide.](./docs/general-usage.md)  
 
 
