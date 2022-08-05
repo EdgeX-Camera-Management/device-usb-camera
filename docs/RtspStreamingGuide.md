@@ -41,9 +41,6 @@ This service provides the following capabilities:
 
 You must have administrator (sudo) privileges to execute the user guide commands.
 
-## How It Works
-For an explanation of the architecture, [see here](../README.md#how-it-works).
-
 ## Tested Devices
 The following devices have been tested with EdgeX USB Camera Device Service:  
 Note: Results may vary based on camera hardware/firmware version and operating system support.
@@ -56,104 +53,21 @@ Note: Results may vary based on camera hardware/firmware version and operating s
 - Logitech StreamCam
 
 ## Dependencies
-The software has dependencies, including Git, Docker, Docker Compose, and assorted command line tools. Follow the instructions below to install any dependency that is not already installed.  
+The software has dependencies, including Git, Docker, Docker Compose, and assorted command line tools. Follow the instructions linked here to install any dependency that is not already installed [see here](setup.md).
 
-### Install Git
-Install Git from the official repository as documented on the [Git SCM](https://git-scm.com/download/linux) site.
-
-1. Update installation repositories:
-   ```bash
-   sudo apt update
-   ```
-
-2. Add the Git repository:
-   ```bash
-   sudo add-apt-repository ppa:git-core/ppa -y
-   ```
-
-3. Install Git:
-   ```bash
-   sudo apt install git
-   ```
 
    
-### Install Tools
-Install the build, media streaming, and parsing tools:
+### Install additional Tools
+Install the media utility tool:
 
    ```bash
-   sudo apt install build-essential ffmpeg curl jq v4l-utils
+   sudo apt install v4l-utils
    ```
 
-NOTE: The device service ONLY works on Linux with kernel v5.10 or higher.  
-
-
-### Tool Descriptions
-The table below lists command line tools this guide uses to help with EdgeX configuration and device setup.
-
-| Tool        | Description | Note |
-| ----------- | ----------- |----------- |
-| `build-essential` | Deveopment tools for compiling the Edgex software in Linux | Includes build tools to allow Edgex to be build in Linux.|
-| `ffmpeg`     | Multimedia framework capable of video playback | The package `ffmpeg` is used to play video streams from a usb camera. |
-| `curl`     | Allows the user to connect to services such as EdgeX |Use curl to get transfer information either to or from this service. In the tutorial, use `curl` to communicate with the EdgeX API. The call will return a JSON object.|
-|  `jq`   |Parses the JSON object returned from the `curl` requests |The `jq` command includes parameters that are used to parse and format data. In this tutorial, the `jq` command has been configured to return and format appropriate data for each `curl` command that is piped into it. |
-| `v4l-utils`   | Utility for interecting with media devices | This utility is used to determine the video stream path of a usb camera. |
-
->Table 1: Command Line Tools
+This utility is used to determine the video stream path of a usb camera. 
 
 ### Install Docker
 Install Docker from the official repository as documented on the [Docker](https://docs.docker.com/engine/install/ubuntu/) site.
-
-### Verify Docker
-To enable running Docker commands without the preface of sudo, add the user to the Docker group. Then run Docker with the `hello-world` test.
-
-1. Create Docker group:
-   ```bash
-   sudo groupadd docker
-   ```
-   >NOTE: If the group already exists, `groupadd` outputs a message: **groupadd: group `docker` already exists**. This is OK.
-
-2. Add User to group:
-   ```bash
-   sudo usermod -aG docker $USER
-   ```
-
-3. Refresh the group:
-   ```bash
-   newgrp docker 
-   ```
-
-4. To verify the Docker installation, run `hello-world`:
-
-   ```bash
-   docker run hello-world
-   ```
-   A **Hello from Docker!** greeting indicates successful installation.
-
-   ```bash
-   Unable to find image 'hello-world:latest' locally
-   latest: Pulling from library/hello-world
-   2db29710123e: Pull complete 
-   Digest: sha256:10d7d58d5ebd2a652f4d93fdd86da8f265f5318c6a73cc5b6a9798ff6d2b2e67
-   Status: Downloaded newer image for hello-world:latest
-
-   Hello from Docker!
-   This message shows that your installation appears to be working correctly.
-   ...
-   ```
-
-### Install Docker Compose
-Install Docker from the official repository as documented on the [Docker Compose](https://docs.docker.com/compose/install/#install-compose) site. See the Linux tab. 
-
-1. Download current stable Docker Compose:
-   ```bash
-   sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-   ```
-   >NOTE: When this guide was created, version 1.29.2 was current.
-
-2. Set permissions:
-   ```bash
-   sudo chmod +x /usr/local/bin/docker-compose
-   ```
 ## Get the Source Code
 ###  Download EdgeX Compose Repository
 
