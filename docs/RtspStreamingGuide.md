@@ -2,21 +2,31 @@
 
 ## Contents
 
+[Overview](#overview)  
 [System Requirements](#system-requirements)  
 [How It Works](#how-it-works)  
-[Overview](#overview)  
 [Tested Devices](#tested-devices)  
 [Dependencies](#dependencies)  
 [Get the Source Code](#get-the-source-code)  
-[Configuration Options](#configuration-options)  
 [Deploy the Service](#deploy-edgex-and-usb-device-camera-microservice)  
 [Verify the Service](#verify-service-and-device-profiles)   
 [Adding Devices using REST API](#adding-devices-using-rest-api)  
 [Start Video Streaming](#start-video-streaming)  
 [Shutting Down](#shutting-down)  
+[Optional](#optional)  
 [Troubleshooting](#troubleshooting)  
 [License](#license)
 
+
+## Overview
+The EdgeX usb device service is designed for communicating with USB cameras attached to Linux OS platforms. This guide will help configure and build the usb device service and start streaming video from the USB camera.
+
+This service provides the following capabilities:
+- V4L2 API to get camera metadata
+- Camera status
+- Video stream reference
+- FFmpeg framework to capture video frames and stream them to an RTSP server
+- An embedded [RTSP server](https://github.com/aler9/rtsp-simple-server) server
 ## System Requirements
 
 - Intel&#8482; Core&#174; processor
@@ -33,16 +43,6 @@ You must have administrator (sudo) privileges to execute the user guide commands
 
 ## How It Works
 For an explanation of the architecture, [see here](../README.md#how-it-works).
-
-## Overview
-The EdgeX usb device service is designed for communicating with USB cameras attached to Linux OS platforms. This guide will help configure and build the usb device service and start streaming video from the USB camera.
-
-This service provides the following capabilities:
-- V4L2 API to get camera metadata
-- Camera status
-- Video stream reference
-- FFmpeg framework to capture video frames and stream them to an RTSP server
-- An embedded [RTSP server](https://github.com/aler9/rtsp-simple-server) server
 
 ## Tested Devices
 The following devices have been tested with EdgeX USB Camera Device Service:  
@@ -154,7 +154,7 @@ Install Docker from the official repository as documented on the [Docker Compose
    ```bash
    sudo chmod +x /usr/local/bin/docker-compose
    ```
-
+## Get the Source Code
 ###  Download EdgeX Compose Repository
 
 1. Create a directory for the EdgeX compose repository:
@@ -173,7 +173,7 @@ Install Docker from the official repository as documented on the [Docker Compose
    ```
 
 
-## Get the Device Usb camera Source Code
+### Get the Device USB Camera Source Code
 
 1. Change into the edgex directory:
    ```bash
