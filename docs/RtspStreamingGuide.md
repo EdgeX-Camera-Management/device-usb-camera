@@ -213,8 +213,8 @@ Install Docker from the official repository as documented on the [Docker Compose
 
    ```yml
    services:
-      device-usb-camera:
-         image: ${REPOSITORY}/device-usb-camera${ARCH}:${DEVICE_USBCAM_VERSION}
+   device-usb-camera:
+      image: edgexfoundry/device-usb-camera${ARCH}:${DEVICE_USBCAM_VERSION}
    ```
 ### Run the Service
 
