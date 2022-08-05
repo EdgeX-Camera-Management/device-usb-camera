@@ -65,10 +65,8 @@ Install the media utility tool:
 - `ffmpeg` is used to view the video stream
 - `v4l-utils` is used to determine the video stream path of a usb camera
 
-### Install Docker
-Install Docker from the official repository as documented on the [Docker](https://docs.docker.com/engine/install/ubuntu/) site.
 ## Get the Source Code
-###  Download EdgeX Compose Repository
+###  Download EdgeX Compose Repository (if not already downloaded)
 
 1. Create a directory for the EdgeX compose repository:
    ```bash
@@ -86,7 +84,7 @@ Install Docker from the official repository as documented on the [Docker](https:
    ```
 
 
-### Get the Device USB Camera Source Code
+### Get the Device USB Camera Source Code (if not already downloaded)
 
 1. Change into the edgex directory:
    ```bash
