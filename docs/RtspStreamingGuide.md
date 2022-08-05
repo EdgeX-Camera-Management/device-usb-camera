@@ -279,15 +279,12 @@ Install Docker from the official repository as documented on the [Docker Compose
 ## Adding Devices using REST API
 Devices can either be added to the service by defining them in a static configuration file, discovering devices dynamically, or with the REST API. For this example, the device will be added using the REST API.
 
-1. Edit the information to appropriately match the camera. The device's protocol properties contain:  
-   * `Path` is a file descriptor of camera created by the OS. You can find the path of the connected USB camera through by running the command below:
-
+1. Run the following command to determine the `Path` to the usb camera for video streaming:
    ```bash
    v4l2-ctl --list-devices
    ```
 
-
-The output should look similar to this:
+   The output should look similar to this:
    ```
    NexiGo N930AF FHD Webcam: NexiG (usb-0000:00:14.0-1):
         /dev/video6
@@ -296,6 +293,11 @@ The output should look similar to this:
    ```
 
    For this example, the `Path` is `/dev/video6`.
+
+
+1. Edit the information to appropriately match the camera. The device's protocol properties contain:
+   * `name` is the name of the device. For this example, the name is `Camera001`
+   * `Path` is a file descriptor of camera created by the OS. Use the `Path` determined in the previous step.
    * `AutoStreaming` indicates whether the device service should automatically start video streaming for cameras. Default value is false.
    
    ```bash
@@ -389,7 +391,7 @@ StreamURI: rtsp://localhost:8554/stream/NexiGo_N930AF_FHD_Webcam__NexiG-20201217
    Using the `streamURI` returned from the previous step, run ffplay:
    
    ```bash
-   ffplay -rtsp_transport tcp rtsp://192.168.86.34:8554/stream1
+   ffplay -rtsp_transport tcp rtsp://localhost:8554/stream/Camera001
    ```
 
   - To shut down ffplay, use the ctrl-c command.
@@ -397,6 +399,10 @@ StreamURI: rtsp://localhost:8554/stream/NexiGo_N930AF_FHD_Webcam__NexiG-20201217
 To stop all EdgeX services (containers), execute the `make down` command:
 
 1. Navigate to the `edgex-compose/compose-builder` directory.
+
+   ```shell
+   cd ~/edgex/edgex-compose/compose-builder
+   ```
 1. Run this command
    ```bash
    make down
@@ -424,11 +430,14 @@ For example:
 ### StreamingStatus
 To verify the usb camera is set to stream video, use the command below. 
 
+Query parameter:
+- `device name`: The name of the camera
+
 ```bash
 curl http://localhost:59882/api/v2/device/name/<device name>/StreamingStatus | jq -r '"StreamingStatus: " + (.event.readings[].objectValue.IsStreaming|tostring)'
 ```
-- please replace <device name> with the name of the device you want to test
-- if the StreamingStatus is false, the camera is not configured to stream video. Please try the Start Video Streaming section again
+
+If the StreamingStatus is false, the camera is not configured to stream video. Please try the Start Video Streaming section again.
 
 ## License
 [Apache-2.0](LICENSE)
