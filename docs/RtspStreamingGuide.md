@@ -306,6 +306,19 @@ StreamURI: rtsp://localhost:8554/stream/NexiGo_N930AF_FHD_Webcam__NexiG-20201217
    ```
 
   - To shut down ffplay, use the ctrl-c command.
+
+  ### Stop Video Streaming
+To stop the usb camera from live streaming, use the following command:
+
+Query parameter:
+- `device name`: The name of the camera
+
+For example:
+```shell
+curl -X PUT -d '{
+    "StopStreaming": "true"
+}' http://localhost:59882/api/v2/device/name/<device name>/StopStreaming
+```
 ## Shutting Down
 To stop all EdgeX services (containers), execute the `make down` command:
 
