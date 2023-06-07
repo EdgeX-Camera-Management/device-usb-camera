@@ -1,0 +1,804 @@
+{
+	"info": {
+		"_postman_id": "75aba832-57a8-4306-b0ce-c4cb2d4ba785",
+		"name": "Minnesota-release-USB-Camera-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all connected USB cameras",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{metadata_host}}:{{metadata_port}}/api/v3/device/service/name/{{device_service_name}}",
+					"protocol": "http",
+					"host": [
+						"{{metadata_host}}"
+					],
+					"port": "{{metadata_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"service",
+						"name",
+						"{{device_service_name}}"
+					]
+				},
+				"description": "To get all onvif devices change {device_service_name} environment varibale to device-onvif-camera"
+			},
+			"response": []
+		},
+		{
+			"name": "Get camera info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/CameraInfo",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"CameraInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Video input index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/VideoInputIndex",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"VideoInputIndex"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get supported image formats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/ImageFormats",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"ImageFormats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get video data format",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/DataFormat",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"DataFormat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get video crop capability",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/CropCapability",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"CropCapability"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get streaming parameters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/StreamingParam",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"StreamingParam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get streaming URI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/StreamURI",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"StreamURI"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get camera metadata",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/GetCameraMetaData",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"GetCameraMetaData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get streaming status and settings",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/StreamingStatus",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"StreamingStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Posting secrets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"apiVersion\": \"v3\",\n    \"secretName\": \"rtspauth\",\n    \"secretData\": [\n        {\n            \"key\": \"username\",\n            \"value\": \"admin\"\n        },\n        {\n            \"key\": \"password\",\n            \"value\": \"Intel123\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:59983/api/v3/secret",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "59983",
+					"path": [
+						"api",
+						"v3",
+						"secret"
+					]
+				},
+				"description": "Test steps:\n1) Execute start streaming api with valid input and outputs\n2) Execute get stream status api and verify that \"IsStreaming\" set to true \nNote: Camera shows green light in front when streaming started"
+			},
+			"response": []
+		},
+		{
+			"name": "Start streaming with valid input and output",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"StartStreaming\": {\n        \"InputImageSize\": \"640x480\",\n        \"InputPixelFormat\": \"YUYV 4:2:2\",\n        \"OutputVideoQuality\": \"5\",\n        \"OutputAspect\": \"4:3\",\n        \"OutputVideoCodec\": \"mpeg4\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/StartStreaming",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"StartStreaming"
+					]
+				},
+				"description": "Test steps:\n1) Execute start streaming api with valid input and outputs\n2) Execute get stream status api and verify that \"IsStreaming\" set to true \nNote: Camera shows green light in front when streaming started"
+			},
+			"response": []
+		},
+		{
+			"name": "Stop streaming",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"StartStreaming\": {\n        \"InputImageSize\": \"640x480\",\n        \"InputPixelFormat\": \"YUYV 4:2:2\",\n        \"OutputVideoQuality\": \"5\",\n        \"OutputAspect\": \"4:3\",\n        \"OutputVideoCodec\": \"mpeg4\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/StopStreaming",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"StopStreaming"
+					]
+				},
+				"description": "Test steps:\n\n1) Execute start streaming api with valid input and outputs\n2) Execute get stream status api and verify that \"IsStreaming\" set to true\n3) Execute stop stream api\n4) Execute get stream status api and verify that \"IsStreaming\" set to false\nNote: Camera shows green light in front when streaming started"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Camera Status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/CameraStatus?InputIndex=0",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"CameraStatus"
+					],
+					"query": [
+						{
+							"key": "InputIndex",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start streaming with nvalid input and output",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"StartStreaming\": {\n        \"InputImageSize\": \"640x480\",\n        \"InputPixelFormat\": \"YUYV 4:2:2\",\n        \"OutputVideoQuality\": \"5\",\n        \"OutputAspect\": \"1:1\",\n        \"OutputVideoCodec\": \"mpeg456\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{command_host}}:{{command_port}}/api/v3/device/name/{{camera_name}}/StartStreaming",
+					"protocol": "http",
+					"host": [
+						"{{command_host}}"
+					],
+					"port": "{{command_port}}",
+					"path": [
+						"api",
+						"v3",
+						"device",
+						"name",
+						"{{camera_name}}",
+						"StartStreaming"
+					]
+				},
+				"description": "Test steps:\n\n1) Execute start streaming api with invalid input and outputs\n2) Execute get stream status api and verify that \"IsStreaming\" set to false and also see error in get stream status\n\nNote; Though it gives 200 it wont actually start streaming with invalid inputs this can be verified with get stream status api"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJFUzM4NCIsImtpZCI6IjA4MzdiNjIyLWRhMWYtZWJkYy0wMTA2LWRhMzJlMmI4ZjhlZSJ9.eyJhdWQiOiJlZGdleCIsImV4cCI6MTY4NTY2Nzg4MSwiaWF0IjoxNjg1NjY0MjgxLCJpc3MiOiIvdjEvaWRlbnRpdHkvb2lkYyIsIm5hbWUiOiJlZGdleHVzZXIiLCJuYW1lc3BhY2UiOiJyb290Iiwic3ViIjoiMGMxNzI4NmMtNGFlZC1jNmI1LWI1N2EtMjc3OTYzN2U3MDhhIn0.avk_dDEpxeF_aD4TRvnHBCB5Cm3g4ddcM_U6yccWLmILNzNHMSlW52vFj4xSSaifWAT78f1uLH20D3jZyIqGjphA3_feKv7JLN-3noQWhdtf85wAMoAexTZC7RyJjQoJ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "profile_enc",
+			"value": ""
+		},
+		{
+			"key": "ptz_enc",
+			"value": ""
+		},
+		{
+			"key": "node_enc",
+			"value": ""
+		},
+		{
+			"key": "videoencoder_enc",
+			"value": ""
+		},
+		{
+			"key": "uri_enc",
+			"value": ""
+		},
+		{
+			"key": "profiles",
+			"value": ""
+		},
+		{
+			"key": "GetNodes",
+			"value": ""
+		},
+		{
+			"key": "profile",
+			"value": ""
+		}
+	]
+}
