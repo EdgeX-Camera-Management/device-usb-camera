@@ -501,8 +501,9 @@ func (d *Driver) Discover() error {
 	currentDevices := d.cachedDeviceMap()
 	// The file descriptor of video capture device can be /dev/video0 ~ 63
 	// https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/devices.txt#L1402-L1406
-	for i := 0; i < 64; i++ {
-		fdPath := BasePath + strconv.Itoa(i)
+	allDevices, _ := usbdevice.GetAllDevicePaths()
+	for _, fdPath := range allDevices {
+		// fdPath := BasePath + strconv.Itoa(i)
 		if ok := d.isVideoCaptureDevice(fdPath); ok {
 			cn, sn, err := getUSBDeviceIdInfo(fdPath)
 			if err != nil {
@@ -814,8 +815,8 @@ func (d *Driver) updateDevicePath(device models.Device) {
 	// https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/devices.txt#L1402-L1406
 	var init []interface{}
 	device.Protocols[UsbProtocol][Paths] = init
-	for i := 0; i < 64; i++ {
-		fdPath := BasePath + strconv.Itoa(i)
+	allDevices, _ := usbdevice.GetAllDevicePaths()
+	for _, fdPath := range allDevices {
 		if ok := d.isVideoCaptureDevice(fdPath); ok {
 			cn, sn, err := getUSBDeviceIdInfo(fdPath)
 			if err != nil {
