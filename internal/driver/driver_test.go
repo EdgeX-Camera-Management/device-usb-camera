@@ -31,7 +31,7 @@ func NewDriver() *Driver {
 	return &Driver{
 		activeDevices: map[string]*Device{
 			"testDeviceRealsense": &Device{
-				paths: []interface{}{
+				paths: []string{
 					"/dev/video0",
 					"/dev/video2",
 					"/dev/video4",
