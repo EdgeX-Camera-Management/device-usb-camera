@@ -139,7 +139,7 @@ func (d *Driver) Start() error {
 	}
 
 	if len(d.ds.Devices()) > 0 {
-		go d.RefreshMultipleDevicePaths()
+		go d.RefreshAllDevicePaths()
 	}
 
 	d.wg.Add(1)
@@ -458,17 +458,17 @@ func (d *Driver) RemoveDevice(deviceName string, protocols map[string]models.Pro
 }
 
 // RefreshMultipleDevicePaths runs RefreshSingleDevicePaths for every connected device
-func (d *Driver) RefreshMultipleDevicePaths() {
+func (d *Driver) RefreshAllDevicePaths() {
 	d.lc.Debug("Refreshing existing device paths")
 	for _, cd := range d.ds.Devices() {
-		d.RefreshSingleDevicePaths(cd)
+		d.RefreshDevicePaths(cd)
 	}
 }
 
 // RefreshSingleDevicePaths checks whether the existing devices match the connected devices.
 // If there is a mismatch between them, scan all paths to find the matching device
 // and update the existing device with the correct path.
-func (d *Driver) RefreshSingleDevicePaths(cd models.Device) {
+func (d *Driver) RefreshDevicePaths(cd models.Device) {
 	d.lc.Debug("Refreshing existing device paths")
 	allDevices, _ := usbdevice.GetAllDevicePaths()
 	devMap := make(map[string]([]map[string]string))
@@ -503,14 +503,12 @@ func (d *Driver) RefreshSingleDevicePaths(cd models.Device) {
 func (d *Driver) Discover() error {
 	d.lc.Info("Discovery is triggered")
 	devices := make(map[string]sdkModels.DiscoveredDevice)
-	// currentSerials := make(map[string]string)
+
 	// Convert the slice of cached devices to map in order to improve the performance in the subsequent for loop.
 	currentDevices := d.cachedDeviceMap()
-	// The file descriptor of video capture device can be /dev/video0 ~ 63
-	// https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/devices.txt#L1402-L1406
+
 	allDevices, _ := usbdevice.GetAllDevicePaths()
 	for _, fdPath := range allDevices {
-		// fdPath := BasePath + strconv.Itoa(i)
 		if ok := d.isVideoCaptureDevice(fdPath); ok {
 			cn, sn, err := getUSBDeviceIdInfo(fdPath)
 			if err != nil {
@@ -519,7 +517,7 @@ func (d *Driver) Discover() error {
 			}
 			// Update existing device if it's path has changed
 			if _, ok := currentDevices[cn+sn]; ok {
-				d.RefreshSingleDevicePaths(currentDevices[cn+sn])
+				d.RefreshDevicePaths(currentDevices[cn+sn])
 				continue
 			}
 			path, err := d.getPathMap(fdPath)
